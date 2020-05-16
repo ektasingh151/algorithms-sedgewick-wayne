@@ -1,0 +1,58 @@
+import java.util.Arrays;
+import java.util.HashMap;
+
+import edu.princeton.cs.algs4.BinarySearch;
+import edu.princeton.cs.introcs.In;
+
+public class TwoSumFast {
+	
+	// Below countMethod2() is brute force algo which can work well for both, array having duplicate elements and having all distinct elements
+	public static int countMethod2(int[] a) {
+		int cnt=0;
+		int N=a.length;
+		for (int i = 0; i < N; i++)
+			for (int j = i+1; j < N; j++)
+			if (a[i] + a[j] == 0)
+			cnt++;
+		return cnt;
+	}
+	
+	
+	public static int twoSum(int[] arr, int sum) {
+        HashMap<Integer, Integer> hm = new HashMap<>(); 
+		
+        for (int i=0; i<arr.length; i++){
+            
+            if(!hm.containsKey(arr[i])) 
+                hm.put(arr[i],0); 
+                  
+            hm.put(arr[i], hm.get(arr[i])+1); 
+        } 
+        int twice_count = 0;
+        
+        for (Integer x:hm.keySet())  
+        { 
+            if(hm.get(sum-x) != null) {
+            	if(sum-x == x) {
+            		int val= hm.get(x);
+            		twice_count = twice_count + ( val*(val-1)/2); // Calculating combination.....
+            	}
+            	else
+            	twice_count = twice_count + ( hm.get(x) * hm.get(sum-x));
+            }
+        }
+        if(twice_count % 2 ==0)
+        return twice_count/2;
+        else
+        	return twice_count/2 +1;
+	}
+
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		//int[] a = In.readInts("https://algs4.cs.princeton.edu/14analysis/4Kints.txt");
+		int[] a = {20, 0, 0, -5, 5, 10, -5, -10, 5, 10, 10, 15, -10}; // You can match count when running the array with brute force method which also handles duplicate elements...
+		System.out.println(twoSum(a, 0));
+	}
+
+}
