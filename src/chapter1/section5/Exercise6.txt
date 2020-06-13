@@ -5,6 +5,12 @@
 Computer can execute 10^9 instructions per second
 Each iteration of the inner for loop requires 10 instructions
 
+-------------------------
+We should have considered 10^10 for for loop iterations while initializing the size array in "Object Initialization" section.
+Correct me if I am wrong.
+Regards,
+-------------------------
+
 The object initialization makes ~10^10 instructions (1 for initializing the count variable, 1 for creating the sites array, 10^10 due to the for loop iterations over the sites, 10^9 for initializing each site, 1 for creating the size array, 10^9 for initializing each size)
 Each find operation makes on the worst case lg(10^9) instructions * 10 due to the loop iterations over the sites ~ 300 instructions
 Each union operation makes on the worst case ~650 instructions (300 for each find(), 1 for comparing sites of the components being united, 1 for comparing sizes, 1 for updating one of the sizes, 1 for increasing one of the sizes and 1 for reducing the count of components)
